@@ -1,7 +1,13 @@
 import { NavLink, Outlet } from 'react-router-dom';
 //import { useState } from 'react';
 //import { tvmaze } from './api/tvmaze';
-const Nav = ({ input, inputchange, onsearch }) => {
+const Nav = ({
+  input,
+  inputchange,
+  onsearch,
+  inputRadiochange,
+  inputRadio,
+}) => {
   const link = [
     {
       to: '/',
@@ -39,6 +45,26 @@ const Nav = ({ input, inputchange, onsearch }) => {
       </header>
       <form onSubmit={onsearch}>
         <input type="text" value={input} onChange={inputchange}></input>
+        <label>
+          Shows
+          <input
+            type="radio"
+            name="search-option"
+            value="shows"
+            onChange={inputRadiochange}
+            checked={inputRadio === 'shows'}
+          ></input>
+        </label>
+        <label>
+          Actors
+          <input
+            type="radio"
+            name="search-option"
+            value="people"
+            onChange={inputRadiochange}
+            checked={inputRadio === 'people'}
+          ></input>
+        </label>
         <button type="submit">search</button>
       </form>
       <Outlet />

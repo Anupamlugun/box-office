@@ -4,21 +4,31 @@ import './App.css';
 import Nav from './Nav';
 import Home from './Home';
 import { useState } from 'react';
-import { tvmaze } from './api/tvmaze';
+import { searcForShows, searcForPeople } from './api/tvmaze';
 function App() {
   const [input, setinput] = useState('');
+  const [inputRadio, setinputRadio] = useState('shows');
   const [search, setSearch] = useState(null);
   const [searcherror, setSearcherror] = useState([]);
+  console.log(inputRadio);
 
   const inputchange = ev => {
     setinput(ev.target.value);
+  };
+  const inputRadiochange = ev => {
+    setinputRadio(ev.target.value);
   };
 
   const onsearch = async ev => {
     ev.preventDefault();
 
     try {
-      const tvdata = await tvmaze(input);
+      var tvdata;
+      if (inputRadio === 'shows') {
+        tvdata = await searcForShows(input);
+      } else if (inputRadio === 'people') {
+        tvdata = await searcForPeople(input);
+      }
       setSearch(tvdata);
     } catch (error) {
       setSearcherror(error);
@@ -27,9 +37,14 @@ function App() {
 
   const renderSearch = () => {
     if (search) {
-      return search.map(data => (
+      return inputRadio === 'shows'
+        ? search.map(data => <div key={data.show.id}> {data.show.name}</div>)
+        : search.map(data => (
+            <div key={data.person.id}> {data.person.name}</div>
+          ));
+      /* return search.map(data => (
         <div key={data.show.id}> {data.show.name}</div>
-      ));
+      ));*/
     }
 
     if (searcherror) {
@@ -49,6 +64,8 @@ function App() {
                 input={input}
                 inputchange={inputchange}
                 onsearch={onsearch}
+                inputRadiochange={inputRadiochange}
+                inputRadio={inputRadio}
               />
             }
           >
