@@ -1,7 +1,7 @@
 import { NavLink, Outlet } from 'react-router-dom';
-import { useState } from 'react';
-
-const Nav = () => {
+//import { useState } from 'react';
+//import { tvmaze } from './api/tvmaze';
+const Nav = ({ input, inputchange, onsearch }) => {
   const link = [
     {
       to: '/',
@@ -13,17 +13,17 @@ const Nav = () => {
     },
   ];
 
-  const [input, setinput] = useState('');
-  //console.log(input);
+  /*const [input, setinput] = useState('');
+  const [search, setSearch] = useState(null);
+  console.log(search);
   const inputchange = ev => {
     setinput(ev.target.value);
   };
   const onsearch = async ev => {
     ev.preventDefault();
-    const items = await fetch(`https://api.tvmaze.com/search/shows?q=${input}`);
-    const body = await items.json();
-    console.log(body);
-  };
+    const tvdata = await tvmaze(input);
+    setSearch(tvdata);
+  };*/
   return (
     <>
       <header>
