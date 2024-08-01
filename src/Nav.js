@@ -1,6 +1,5 @@
 import { NavLink, Outlet } from 'react-router-dom';
-//import { useState } from 'react';
-//import { tvmaze } from './api/tvmaze';
+
 const Nav = ({
   input,
   inputchange,
@@ -19,17 +18,6 @@ const Nav = ({
     },
   ];
 
-  /*const [input, setinput] = useState('');
-  const [search, setSearch] = useState(null);
-  console.log(search);
-  const inputchange = ev => {
-    setinput(ev.target.value);
-  };
-  const onsearch = async ev => {
-    ev.preventDefault();
-    const tvdata = await tvmaze(input);
-    setSearch(tvdata);
-  };*/
   return (
     <>
       <header>

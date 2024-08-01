@@ -5,6 +5,8 @@ import Nav from './Nav';
 import Home from './Home';
 import { useState } from 'react';
 import { searcForShows, searcForPeople } from './api/tvmaze';
+import ShowsGrid from './Shows/ShowsGrid';
+import ActorsGrid from './Actors/ActorsGrid';
 function App() {
   const [input, setinput] = useState('');
   const [inputRadio, setinputRadio] = useState('shows');
@@ -36,18 +38,20 @@ function App() {
   };
 
   const renderSearch = () => {
-    if (search) {
-      return search[0].show
-        ? search.map(data => <div key={data.show.id}> {data.show.name}</div>)
-        : search.map(data => (
-            <div key={data.person.id}> {data.person.name}</div>
-          ));
+    if (search?.length > 0) {
+      return search[0].show ? (
+        <ShowsGrid shows={search} />
+      ) : (
+        <ActorsGrid actors={search} />
+      );
     }
-
+    if (search?.length === 0) {
+      return <div>Data not found</div>;
+    }
     if (searcherror) {
       return <div>{searcherror.message}</div>;
     }
-    return null;
+    //return null;
   };
 
   return (
