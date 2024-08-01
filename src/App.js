@@ -8,12 +8,12 @@ import { searcForShows, searcForPeople } from './api/tvmaze';
 import ShowsGrid from './Shows/ShowsGrid';
 import ActorsGrid from './Actors/ActorsGrid';
 import Shows from './Shows';
+
 function App() {
   const [input, setinput] = useState('');
   const [inputRadio, setinputRadio] = useState('shows');
   const [search, setSearch] = useState(null);
   const [searcherror, setSearcherror] = useState([]);
-  console.log(inputRadio);
 
   const inputchange = ev => {
     setinput(ev.target.value);
