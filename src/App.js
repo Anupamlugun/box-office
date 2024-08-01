@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { searcForShows, searcForPeople } from './api/tvmaze';
 import ShowsGrid from './Shows/ShowsGrid';
 import ActorsGrid from './Actors/ActorsGrid';
+import Shows from './Shows';
 function App() {
   const [input, setinput] = useState('');
   const [inputRadio, setinputRadio] = useState('shows');
@@ -74,6 +75,8 @@ function App() {
             <Route path="starred" element={<Starred />} />
             <Route path="*" element={<div>Not found</div>} />
           </Route>
+
+          <Route path="/show/:showId" element={<Shows />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

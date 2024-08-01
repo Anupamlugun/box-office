@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-const ShowsCard = ({ name, image, summary }) => {
+const ShowsCard = ({ id, name, image, summary }) => {
   const summaryStripped = summary
     ? summary.split(' ').slice(0, 10).join(' ').replace(/<.+?>/g, '')
     : 'No description';
@@ -12,7 +12,7 @@ const ShowsCard = ({ name, image, summary }) => {
       <h1>{name}</h1>
       <p>{summaryStripped}</p>
       <div>
-        <Link to="/">Read more</Link>
+        <Link to={`/show/${id}`}>Read more</Link>
         <button type="button">Star me</button>
       </div>
     </div>
