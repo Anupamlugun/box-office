@@ -37,14 +37,11 @@ function App() {
 
   const renderSearch = () => {
     if (search) {
-      return inputRadio === 'shows'
+      return search[0].show
         ? search.map(data => <div key={data.show.id}> {data.show.name}</div>)
         : search.map(data => (
             <div key={data.person.id}> {data.person.name}</div>
           ));
-      /* return search.map(data => (
-        <div key={data.show.id}> {data.show.name}</div>
-      ));*/
     }
 
     if (searcherror) {
