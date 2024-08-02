@@ -6,4 +6,5 @@ const tvmaze = async queryinput => {
 };
 export const searcForShows = input => tvmaze(`/search/shows?q=${input}`);
 export const searcForPeople = input => tvmaze(`/search/people?q=${input}`);
-export const getShowId = id => tvmaze(`/shows/${id}`);
+export const getShowId = id =>
+  tvmaze(`/shows/${id}?embed[]=seasons&embed[]=cast`);
