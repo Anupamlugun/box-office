@@ -8,6 +8,9 @@ import { searcForShows, searcForPeople } from './api/tvmaze';
 import ShowsGrid from './Shows/ShowsGrid';
 import ActorsGrid from './Actors/ActorsGrid';
 import Shows from './Shows';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 function App() {
   const [input, setinput] = useState('');
@@ -56,30 +59,32 @@ function App() {
   };
 
   return (
-    <div>
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Nav
-                input={input}
-                inputchange={inputchange}
-                onsearch={onsearch}
-                inputRadiochange={inputRadiochange}
-                inputRadio={inputRadio}
-              />
-            }
-          >
-            <Route path="/" element={<Home renderSearch={renderSearch} />} />
-            <Route path="starred" element={<Starred />} />
-            <Route path="*" element={<div>Not found</div>} />
-          </Route>
+    <>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Nav
+                  input={input}
+                  inputchange={inputchange}
+                  onsearch={onsearch}
+                  inputRadiochange={inputRadiochange}
+                  inputRadio={inputRadio}
+                />
+              }
+            >
+              <Route path="/" element={<Home renderSearch={renderSearch} />} />
+              <Route path="starred" element={<Starred />} />
+              <Route path="*" element={<div>Not found</div>} />
+            </Route>
 
-          <Route path="/show/:showId" element={<Shows />}></Route>
-        </Routes>
-      </BrowserRouter>
-    </div>
+            <Route path="/show/:showId" element={<Shows />}></Route>
+          </Routes>
+        </BrowserRouter>
+      </QueryClientProvider>
+    </>
   );
 }
 
