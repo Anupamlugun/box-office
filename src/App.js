@@ -3,7 +3,7 @@ import Starred from './Starred';
 import './App.css';
 import Nav from './Nav';
 import Home from './Home';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { searcForShows, searcForPeople } from './api/tvmaze';
 import ShowsGrid from './Shows/ShowsGrid';
 import ActorsGrid from './Actors/ActorsGrid';
@@ -21,8 +21,10 @@ function App() {
   const inputchange = ev => {
     setinput(ev.target.value);
   };
+
   const inputRadiochange = ev => {
     setinputRadio(ev.target.value);
+    console.log(ev.target.checked);
   };
 
   const onsearch = async ev => {
@@ -41,14 +43,24 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    const sessionStorageItems = JSON.parse(
+      sessionStorage.getItem('listedItems')
+    );
+    setSearch(sessionStorageItems);
+  }, []);
+
   const renderSearch = () => {
     if (search?.length > 0) {
+      sessionStorage.setItem('listedItems', JSON.stringify(search));
+
       return search[0].show ? (
         <ShowsGrid shows={search} />
       ) : (
         <ActorsGrid actors={search} />
       );
     }
+
     if (search?.length === 0) {
       return <div>Data not found</div>;
     }
