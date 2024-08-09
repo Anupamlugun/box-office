@@ -24,12 +24,12 @@ function App() {
 
   const inputRadiochange = ev => {
     setinputRadio(ev.target.value);
-    console.log(ev.target.checked);
   };
 
   const onsearch = async ev => {
     ev.preventDefault();
-
+    sessionStorage.setItem('radiovalue', inputRadio);
+    sessionStorage.setItem('Searchvalue', input);
     try {
       var tvdata;
       if (inputRadio === 'shows') {
@@ -48,6 +48,12 @@ function App() {
       sessionStorage.getItem('listedItems')
     );
     setSearch(sessionStorageItems);
+
+    const sessionRadio = sessionStorage.getItem('radiovalue');
+    setinputRadio(sessionRadio);
+
+    const sessionSearch = sessionStorage.getItem('Searchvalue');
+    setinput(sessionSearch);
   }, []);
 
   const renderSearch = () => {
@@ -67,7 +73,6 @@ function App() {
     if (searcherror) {
       return <div>{searcherror.message}</div>;
     }
-    //return null;
   };
 
   return (
