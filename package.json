@@ -19,7 +19,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "npm run build && surge bulid box-office-anupamlugun.surge.sh"
+    "deploy": "npm run build && surge build box-office-anupamlugun.surge.sh"
   },
   "eslintConfig": {
     "extends": [
