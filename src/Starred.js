@@ -1,15 +1,10 @@
-import { useNavigate } from 'react-router-dom';
 import Starredlist from './Starredlist';
 import { getShowId } from './api/tvmaze';
 import { useQuery } from '@tanstack/react-query';
 import ShowsGrid from './Shows/ShowsGrid';
+import { FlexGrid } from './common/FlexGrid';
 
 const Starred = () => {
-  const navigate = useNavigate();
-  const gotohome = () => {
-    navigate('/');
-  };
-
   const starredShows = Starredlist();
 
   async function fetchShowList() {
@@ -42,11 +37,7 @@ const Starred = () => {
   }
   return (
     <>
-      <div>i am Starred</div>
-      <button type="button" onClick={() => gotohome()}>
-        Go to home
-      </button>
-      <div>{<ShowsGrid shows={stardata} />}</div>
+      <FlexGrid>{<ShowsGrid shows={stardata} />}</FlexGrid>
     </>
   );
 };

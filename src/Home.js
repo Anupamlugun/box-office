@@ -1,8 +1,9 @@
+import { FlexGrid } from './common/FlexGrid';
+
 const Home = ({ renderSearch }) => {
   return (
     <>
-      <div>i am home page</div>
-      {renderSearch()}
+      <FlexGrid>{renderSearch()}</FlexGrid>
     </>
   );
 };

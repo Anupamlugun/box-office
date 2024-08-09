@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Starred from './Starred';
-import './App.css';
 import Nav from './Nav';
 import Home from './Home';
 import { useEffect, useState } from 'react';
@@ -9,6 +8,7 @@ import ShowsGrid from './Shows/ShowsGrid';
 import ActorsGrid from './Actors/ActorsGrid';
 import Shows from './Shows';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { GlobalTheme } from './theme';
 
 const queryClient = new QueryClient();
 
@@ -78,28 +78,33 @@ function App() {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <Nav
-                  input={input}
-                  inputchange={inputchange}
-                  onsearch={onsearch}
-                  inputRadiochange={inputRadiochange}
-                  inputRadio={inputRadio}
+        <GlobalTheme>
+          <BrowserRouter>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <Nav
+                    input={input}
+                    inputchange={inputchange}
+                    onsearch={onsearch}
+                    inputRadiochange={inputRadiochange}
+                    inputRadio={inputRadio}
+                  />
+                }
+              >
+                <Route
+                  path="/"
+                  element={<Home renderSearch={renderSearch} />}
                 />
-              }
-            >
-              <Route path="/" element={<Home renderSearch={renderSearch} />} />
-              <Route path="starred" element={<Starred />} />
-              <Route path="*" element={<div>Not found</div>} />
-            </Route>
+                <Route path="starred" element={<Starred />} />
+                <Route path="*" element={<div>Not found</div>} />
+              </Route>
 
-            <Route path="/show/:showId" element={<Shows />}></Route>
-          </Routes>
-        </BrowserRouter>
+              <Route path="/show/:showId" element={<Shows />}></Route>
+            </Routes>
+          </BrowserRouter>
+        </GlobalTheme>
       </QueryClientProvider>
     </>
   );
