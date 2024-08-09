@@ -14,7 +14,7 @@ const ShowsCard = ({ id, name, image, summary, onStarred, isStarred }) => {
       <h1>{name}</h1>
       <p>{summaryStripped}</p>
       <ReadmoreStarAlign>
-        <Link to={`/show/${id}`} target="_blank" rel="noreferrer">
+        <Link to={`/show/${id}`} rel="noreferrer">
           Read more
         </Link>
         <StarIcon active={isStarred} onClick={() => onStarred(id)}></StarIcon>
