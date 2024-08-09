@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { SearchCard, SearchImgWrapper } from '../common/SearchCard';
 import { ReadmoreStarAlign, StarIcon } from '../common/StarIcon';
 
@@ -13,9 +14,9 @@ const ShowsCard = ({ id, name, image, summary, onStarred, isStarred }) => {
       <h1>{name}</h1>
       <p>{summaryStripped}</p>
       <ReadmoreStarAlign>
-        <a href={`/show/${id}`} target="_blank" rel="noreferrer">
+        <Link to={`/show/${id}`} target="_blank" rel="noreferrer">
           Read more
-        </a>
+        </Link>
         <StarIcon active={isStarred} onClick={() => onStarred(id)}></StarIcon>
       </ReadmoreStarAlign>
     </SearchCard>
