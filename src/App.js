@@ -47,13 +47,13 @@ function App() {
     const sessionStorageItems = JSON.parse(
       sessionStorage.getItem('listedItems')
     );
-    setSearch(sessionStorageItems);
+    sessionStorageItems ? setSearch(sessionStorageItems) : null;
 
     const sessionRadio = sessionStorage.getItem('radiovalue');
-    setinputRadio(sessionRadio);
+    sessionRadio ? setinputRadio(sessionRadio) : null;
 
     const sessionSearch = sessionStorage.getItem('Searchvalue');
-    setinput(sessionSearch);
+    sessionSearch ? setinput(sessionSearch) : null;
   }, []);
 
   const renderSearch = () => {
