@@ -211,7 +211,7 @@ const SearchButtonWrapper = styled.div`
   text-align: center;
   margin-bottom: 35px;
   button {
-    color: #fff;
+    color: red;
     background-color: ${({ theme }) => theme.mainColors.blue};
     margin: auto;
     padding: 10px 50px;
